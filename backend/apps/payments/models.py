@@ -2,7 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
-from .services import get_balance, get_status, get_balance_history
+from .services import get_balance, get_status, get_balance_history, get_nfts
 
 
 class Wallet(models.Model):
@@ -26,7 +26,7 @@ class Wallet(models.Model):
         return get_balance(self.public_key)
 
     def get_nfts(self):
-        pass
+        return get_nfts(self.public_key)
 
     def get_history(self):
         return get_balance_history(self.public_key)

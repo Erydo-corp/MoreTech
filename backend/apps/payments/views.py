@@ -58,6 +58,9 @@ class UserBalanceView(APIView):
 	def get(self, request):
 		wallet = Wallet.objects.get(user=request.user.id)
 		balance_json = wallet.get_balance()
+		nfts_json = wallet.get_nfts()
+
+		balance_json['nfts'] = nfts_json['balance']
 		return Response(balance_json, status=200)
 
 

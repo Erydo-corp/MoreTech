@@ -56,6 +56,18 @@ def get_balance(public_key):
 	return balance_json
 
 
+def get_nfts(public_key):
+	url = urllib.parse.urljoin(
+		API_BASE_URL,
+		f'/v1/wallets/{public_key}/nft/balance'
+	)
+	headers = {
+		"Accept": "application/json"
+	}
+	nfts_json = httpx.get(url, headers=headers).json()
+	return nfts_json
+
+
 def get_balance_history(public_key):
 	url = urllib.parse.urljoin(
 		API_BASE_URL,

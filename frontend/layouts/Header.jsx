@@ -1,6 +1,6 @@
 // Create section Header for application
 import {AppBar, List, ListItem, ListItemText, ListItemButton, Container, Toolbar, Typography} from '@mui/material';
-import React from 'react';
+import React, {memo} from 'react';
 import Link from 'next/link';
 import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -95,4 +95,4 @@ const Header = ({children}) => {
   );
 }
 
-export default Header;
+export default  memo(Header);

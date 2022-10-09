@@ -3,8 +3,10 @@ import {Card, CardHeader, CardContent, Button, Typography} from "@mui/material";
 import Box from "@mui/system/Box";
 import Grid from "@mui/material/Grid";
 import { ListUser } from "./ListUser";
+import UserService from "../../service/UserService";
 
 export const ActiveUser = () => {
+    const users = UserService.getUsers()
   return (
     <>
       <Card sx={{ minWidth: 300,
@@ -43,7 +45,7 @@ export const ActiveUser = () => {
               color: '#ABADC6',
               }}
             >Доход</Typography></Box>
-            <ListUser />
+            <ListUser user={users}/>
         </CardContent>
       </Card>
     </>

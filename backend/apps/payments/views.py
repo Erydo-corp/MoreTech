@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAdminUser
 
 from ..base.permissions import IsAuthor
 from .models import Transaction, Wallet
-from .services import perform_transaction, generate_nfts
+from .services import perform_transaction, generate_nfts, get_nft_info, get_generated_nfts
 from .serializers import TransactionSerializer, TransactionDetailSerializer, GenerateNFTSerializer
 
 
@@ -96,4 +96,20 @@ class GenerateNFTView(CreateAPIView):
             sender=sender,
             transaction_hash=transaction_json['transaction_hash']
         )
+
+
+class NFTDetailView(APIView):    
+    queryset = User.objects.all()
+
+    def get(self, request, **kwargs):
+        nft_info = get_nft_info(kwargs.get('token_id'))
+        return Response(nft_info, status=200)
+
+
+class NFTListView(APIView):
+    queryset = User.objects.all()
+
+    def get(self, request, **kwargs):
+        nft_list = get_generated_nfts(kwargs.get('transaction_hash'))
+        return Response(nft_list, status=200)
 

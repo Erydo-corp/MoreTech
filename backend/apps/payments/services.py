@@ -101,7 +101,7 @@ def get_status(transaction_hash):
 def generate_nfts(public_key, uri, nft_amount):
 	url = urllib.parse.urljoin(
 		API_BASE_URL,
-		'/v1/nft/generate'
+		'/hk/v1/nft/generate'
 	)
 	headers = {
 		"Content-Type": "application/json",
@@ -112,5 +112,29 @@ def generate_nfts(public_key, uri, nft_amount):
         "uri": uri,
         "nftCount": nft_amount if nft_amount <= 20 else 20
 	}
-	history_json = httpx.post(url, headers=headers, json=data).json()
-	return history_json	
+	nfts_json = httpx.post(url, headers=headers, json=data).json()
+	return nfts_json	
+
+
+def get_nft_info(token_id):
+	url = urllib.parse.urljoin(
+		API_BASE_URL,
+		f'/hk/v1/nft/{token_id}'
+	)
+	headers = {
+		"Accept": "application/json"
+	}
+	nft_info_json = httpx.get(url, headers=headers).json()
+	return nft_info_json
+
+
+def get_generated_nfts(transaction_hash):
+	url = urllib.parse.urljoin(
+		API_BASE_URL,
+		f'/hk/v1/nft/generate/{transaction_hash}'
+	)
+	headers = {
+		"Accept": "application/json"
+	}
+	nft_list = httpx.get(url, headers=headers).json()
+	return nft_list

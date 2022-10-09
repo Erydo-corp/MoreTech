@@ -59,6 +59,8 @@ class TransactionDetailSerializer(serializers.ModelSerializer):
 
 
 class GenerateNFTSerializer(serializers.ModelSerializer):
+    transaction_hash = serializers.ReadOnlyField()
+
     class Meta:
         model = models.Transaction
         fields = [

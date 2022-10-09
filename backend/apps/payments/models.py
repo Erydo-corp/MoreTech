@@ -2,7 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
-from .services import get_balance, get_status
+from .services import get_balance, get_status, get_balance_history
 
 
 class Wallet(models.Model):
@@ -29,8 +29,7 @@ class Wallet(models.Model):
         pass
 
     def get_history(self):
-        pass
-
+        return get_balance_history(self.public_key)
 
 
 class Transaction(models.Model):
@@ -69,6 +68,7 @@ class Transaction(models.Model):
     token_id = models.PositiveIntegerField(
         'Token ID (для NFT)',
         blank=True,
+        null=True
     )
     created = models.DateTimeField(auto_now_add=True)
 

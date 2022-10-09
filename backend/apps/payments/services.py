@@ -57,13 +57,27 @@ def get_balance(public_key):
 
 
 def get_balance_history(public_key):
-	pass
+	url = urllib.parse.urljoin(
+		API_BASE_URL,
+		f'/hk/v1/wallets/{public_key}/history'
+	)
+	headers = {
+		"Content-Type": "application/json",
+		"Accept": "application/json"
+	}
+	data = {
+        "page": None,
+        "offset": None,
+        "sort": "acs"
+	}
+	history_json = httpx.post(url, headers=headers, json=data).json()
+	return history_json
 
 
 def get_status(transaction_hash):
 	url = urllib.parse.urljoin(
 		API_BASE_URL,
-		f'/hk/v1/transfers/status/{transactionHash}'
+		f'/hk/v1/transfers/status/{transaction_hash}'
 	)
 	headers = {
 		"Accept": "application/json"

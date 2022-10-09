@@ -9,4 +9,5 @@ urlpatterns = [
     # детальная транзакция
     path('transaction/<int:pk>/', views.TransactionDetailView.as_view()),
     path('user-balance/', views.UserBalanceView.as_view()),
+    path('user-balance-history/', views.UserBalanceHistoryView.as_view()),
 ]

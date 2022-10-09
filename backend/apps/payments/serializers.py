@@ -1,7 +1,7 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 
 from . import models
-from ..account.serializers import UserSerializer
 
 
 class TransactionSerializer(serializers.ModelSerializer):
@@ -19,5 +19,40 @@ class TransactionSerializer(serializers.ModelSerializer):
         ]
 
 
-class BalanceSerializer():
-    pass
+class WalletSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Wallet
+        fields = [
+            "id",
+            "public_key"
+        ]
+
+
+class UserWalletSerializer(serializers.ModelSerializer):
+    wallet = WalletSerializer()
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "wallet"
+        ]
+
+
+class TransactionDetailSerializer(serializers.ModelSerializer):
+    receiver = UserWalletSerializer()
+    sender = UserWalletSerializer()
+
+    class Meta:
+        model = models.Transaction
+        fields = [
+            "id",
+            "transaction_type",
+            "sender",
+            "receiver",
+            "amount",
+            "token_id",
+            "transaction_hash",
+            "status"
+        ]
+
+

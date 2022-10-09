@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db.models import Q
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -7,7 +8,7 @@ from rest_framework.response import Response
 from ..base.permissions import IsAuthor
 from .models import Transaction, Wallet
 from .services import perform_transaction
-from .serializers import TransactionSerializer, BalanceSerializer
+from .serializers import TransactionSerializer, TransactionDetailSerializer
 
 
 class TransactionView(ModelViewSet):
@@ -41,15 +42,14 @@ class TransactionView(ModelViewSet):
 			receiver=receiver,
 			transaction_hash=transaction_hash,
 			transaction_type=transaction_type,
-			amount=amount
+			amount=float(amount)
 		)
 
 
-class TransactionDetailView(APIView):
-	queryset = User.objects.all()
-
-	def get(self, request):
-		pass
+class TransactionDetailView(RetrieveAPIView):
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionDetailSerializer
+		
 
 
 class UserBalanceView(APIView):
@@ -59,3 +59,12 @@ class UserBalanceView(APIView):
 		wallet = Wallet.objects.get(user=request.user.id)
 		balance_json = wallet.get_balance()
 		return Response(balance_json, status=200)
+
+
+class UserBalanceHistoryView(APIView):
+	queryset = User.objects.all()
+
+	def get(self, request):
+		wallet = Wallet.objects.get(user=request.user.id)
+		history_json = wallet.get_history()
+		return Response(history_json, status=200)

@@ -35,19 +35,19 @@ export default function Employees(){
                         <Table>
                             <TableHead>
                                 <TableCell align="left"
-                                           sx={{color: '#ABADC6', fontSize: 12}}>
+                                           sx={{color: '#ABADC6', fontSize: 12, textTransform: 'uppercase'}}>
                                     ФИО
                                 </TableCell>
                                 <TableCell align="right"
-                                           sx={{color: '#ABADC6', fontSize: 12}}>
+                                           sx={{color: '#ABADC6', fontSize: 12, textTransform: 'uppercase'}}>
                                     E-mail
                                 </TableCell>
                                 <TableCell align="right"
-                                           sx={{color: '#ABADC6', fontSize: 12}}>
+                                           sx={{color: '#ABADC6', fontSize: 12, textTransform: 'uppercase'}}>
                                     Начисления
                                 </TableCell>
                                 <TableCell align="right"
-                                           sx={{color: '#ABADC6', fontSize: 12}}>
+                                           sx={{color: '#ABADC6', fontSize: 12, textTransform: 'uppercase'}}>
                                     Действия
                                 </TableCell>
                             </TableHead>

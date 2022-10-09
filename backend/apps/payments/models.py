@@ -2,7 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
-from .services import get_balance, get_status
+from .services import get_balance, get_status, get_balance_history, get_nfts
 
 
 class Wallet(models.Model):
@@ -26,11 +26,10 @@ class Wallet(models.Model):
         return get_balance(self.public_key)
 
     def get_nfts(self):
-        pass
+        return get_nfts(self.public_key)
 
     def get_history(self):
-        pass
-
+        return get_balance_history(self.public_key)
 
 
 class Transaction(models.Model):
@@ -64,11 +63,24 @@ class Transaction(models.Model):
         max_digits=8,
         decimal_places=2,
         default=0,
+        null=True,
         blank=True,
+    )
+    uri = models.CharField(
+        'Ссылка (на исходник NFT)',
+        max_length=1024,
+        null=True,
+        blank=True
+    )
+    nft_amount = models.PositiveIntegerField(
+        'Количество NFT',
+        blank=True,
+        null=True
     )
     token_id = models.PositiveIntegerField(
         'Token ID (для NFT)',
         blank=True,
+        null=True
     )
     created = models.DateTimeField(auto_now_add=True)
 

@@ -1,10 +1,13 @@
 import React from 'react';
+import { useState } from 'react';
 import { Box, Button, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
+import { AddPublication } from '../Modal/AddPublication';
+import NewPublication from '../Modal/NewPublication';
 
 const eventHistory = [
  {id: 1, event: 'Недавние', style: 'recent'},
@@ -13,6 +16,9 @@ const eventHistory = [
 ];
  
 const UserHistory = () => {
+
+  const [modalActive, setModalActive] = useState(false);
+
   return (
     <Box gridColumn="span 3">
       <Box
@@ -80,7 +86,7 @@ const UserHistory = () => {
             ))}
           </List>
           
-          <Button className='button__design'
+          <Button onClick={() => setModalActive(true)} className='button__design'
                 variant="contained"
                 startIcon={<AddIcon />}
                 sx={{
@@ -91,10 +97,13 @@ const UserHistory = () => {
                   backgroundColor: '#4338CA',
                   }}
               >
-              Добавить публикацию</Button>
+              Добавить публикацию</Button>  
           </Box>
-        
       </Box>
+
+      {/* модальное окно */}
+      <NewPublication active={modalActive} setActive={setModalActive}/>
+
     </Box>
   );
 };

@@ -8,6 +8,8 @@ export default function BtnDirector(){
     return(
         <Grid xs={2} ml={-1.5} mt={2}>
             <Button sx={{
+                padding: '12px 16px',
+                borderRadius: '12px',
                 background: "linear-gradient(90deg, #F974EB, #9F7CE0)",
                 color: "white"
             }}>

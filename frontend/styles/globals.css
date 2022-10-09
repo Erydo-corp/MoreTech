@@ -181,8 +181,18 @@ a {
 .last__publication__icon{
   content: url(../public/assets/image/svg/creative__icon/flag.svg);
 }
-/* переопределение стилей для творческой среды (end) */
 
+.btn__style_medium{
+  background: linear-gradient(90.05deg, #F974EB 0%, #9F7CE0 100%);
+}
+
+/* переопределение стилей для творческой среды (end) */
+.modal{
+  transform: scale(0);
+}
+.modal.active{
+  transform: scale(1);
+}
 
 
 

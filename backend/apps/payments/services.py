@@ -96,3 +96,21 @@ def get_status(transaction_hash):
 	}
 	status_json = httpx.get(url, headers=headers).json()
 	return status_json
+
+
+def generate_nfts(public_key, uri, nft_amount):
+	url = urllib.parse.urljoin(
+		API_BASE_URL,
+		'/v1/nft/generate'
+	)
+	headers = {
+		"Content-Type": "application/json",
+		"Accept": "application/json"
+	}
+	data = {
+        "toPublicKey": public_key,
+        "uri": uri,
+        "nftCount": nft_amount if nft_amount <= 20 else 20
+	}
+	history_json = httpx.post(url, headers=headers, json=data).json()
+	return history_json	

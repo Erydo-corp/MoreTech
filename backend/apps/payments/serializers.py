@@ -52,7 +52,21 @@ class TransactionDetailSerializer(serializers.ModelSerializer):
             "amount",
             "token_id",
             "transaction_hash",
-            "status"
+            "status",
+            "uri",
+            "nft_amount"
+        ]
+
+
+class GenerateNFTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Transaction
+        fields = [
+            "id",
+            "receiver",
+            "nft_amount",
+            "uri",
+            "transaction_hash"
         ]
 
 

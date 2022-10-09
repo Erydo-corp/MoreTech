@@ -63,7 +63,19 @@ class Transaction(models.Model):
         max_digits=8,
         decimal_places=2,
         default=0,
+        null=True,
         blank=True,
+    )
+    uri = models.CharField(
+        'Ссылка (на исходник NFT)',
+        max_length=1024,
+        null=True,
+        blank=True
+    )
+    nft_amount = models.PositiveIntegerField(
+        'Количество NFT',
+        blank=True,
+        null=True
     )
     token_id = models.PositiveIntegerField(
         'Token ID (для NFT)',

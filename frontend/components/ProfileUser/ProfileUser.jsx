@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import Box from "@mui/material/Box";
 import {Avatar, Button, Container, Typography} from "@mui/material";
 import Grid from "@mui/material/Grid";
@@ -7,23 +7,40 @@ import AddReactionIcon from '@mui/icons-material/AddReaction';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import BoxElements from "../../layouts/BoxElements";
 import City from "./City";
+import axios from "axios";
 
 export default function ProfileUser(){
+    const [users, setUsers] = useState("")
+    const [load, setLoad] = useState(false)
+
+    useEffect(()=>{
+        const usersList = async () => {
+            setLoad(true)
+            const list = await axios(
+                "https://38cf-79-172-71-109.eu.ngrok.io/api/v1/account/user/2/"
+            )
+            setUsers(list.data)
+            setLoad(false)
+        }
+        usersList()
+    },[])
+
 
     return(<>
-            <BoxElements>
+            {users &&  <BoxElements>
                 <Box>
                     <Grid container color={"white"} >
                         <Grid xs={12} ml={1} mt={2}>
-                            <Typography variant={"h5"}>Вася Пупкин</Typography>
+                            <Typography variant={"h5"}>{users.first_name +
+                                " " + users.last_name}</Typography>
                         </Grid>
                         <Grid container m={2}>
                             <Grid xs={1}>
                                 <Avatar/>
                             </Grid>
-                            <Grid ml={5}>
-                                <Typography>ds@mail.ru</Typography>
-                                <City />
+                            <Grid ml={4}>
+                                <Typography>{users.email}</Typography>
+                                <City city={users.account} />
                             </Grid>
                         </Grid>
                         <Grid container>
@@ -78,7 +95,7 @@ export default function ProfileUser(){
                         </Grid>
                     </Grid>
                 </Box>
-            </BoxElements>
+            </BoxElements>}
     </>
     )
 }

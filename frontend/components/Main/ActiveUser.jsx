@@ -1,12 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Card, CardHeader, CardContent, Button, Typography} from "@mui/material";
 import Box from "@mui/system/Box";
 import Grid from "@mui/material/Grid";
 import { ListUser } from "./ListUser";
 import UserService from "../../service/UserService";
+import {Context} from "../../pages/_app";
 
 export const ActiveUser = () => {
-    const users = UserService.getUsers()
+
   return (
     <>
       <Card sx={{ minWidth: 300,
@@ -45,7 +46,7 @@ export const ActiveUser = () => {
               color: '#ABADC6',
               }}
             >Доход</Typography></Box>
-            <ListUser user={users}/>
+            <ListUser/>
         </CardContent>
       </Card>
     </>

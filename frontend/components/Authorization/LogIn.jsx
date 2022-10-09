@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { Container, Typography} from "@mui/material";
 import Box from '@mui/material/Box';
 import { FormControl, Input, InputLabel, FormHelperText, TextField} from '@mui/material';
 import {Button} from "@mui/material";
 import AuthSevice from "../../service/AuthSevice";
+import {Context} from "../../pages/_app";
 
 const LogIn = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
+    const {store} = useContext(Context)
 
     const getUsername = (e) => {
       setUsername(e.target.value)
@@ -24,7 +25,7 @@ const LogIn = () => {
        }}>
        </Box>
        <Box gridColumn="span 8" sx={{padding: '10% 5%'}}>
-               <FormControl sx={{padding: '10% 5%', width: '90%'}} onSubmit={AuthSevice.login}>
+               <FormControl sx={{padding: '10% 5%', width: '90%'}}>
                    <Typography
                        variant="h6"
                        component="h2"
@@ -80,7 +81,7 @@ const LogIn = () => {
                                paddingTop: '18px',
                                paddingBottom: '18px',
                                backgroundColor: '#4338CA',}}
-                        onClick={()=>AuthSevice.login(username, password)}
+                        onClick={()=>store.login(username, password)}
                    >
                        Войти</Button>
                </FormControl>

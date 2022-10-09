@@ -23,6 +23,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'corsheaders',
+    'django_filters',
+    'drf_yasg2',
 
     'apps.account',
     'apps.social',
@@ -30,10 +36,7 @@ INSTALLED_APPS = [
     'apps.shop',
     'apps.payments',
 
-    'corsheaders',
-    'rest_framework',
-    'django_filters',
-    'drf_yasg2',
+    # 'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +133,11 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     # 'DEFAULT_PAGINATION_CLASS': 'board.apps.core.pagination.LinkHeaderPagination',
     # 'PAGE_SIZE': 100,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
@@ -149,3 +157,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = False
+
+WALLET_API_PUBLIC_KEY = os.environ.get("WALLET_API_PUBLIC_KEY")
+
+WALLET_API_PRIVATE_KEY = os.environ.get("WALLET_API_PRIVATE_KEY")

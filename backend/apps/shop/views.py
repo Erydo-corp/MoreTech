@@ -1,11 +1,12 @@
-from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.response import Response
 
 from .models import Product, Cart, CartItem, Order, OrderItem
-from .serializers import ProductSerializer, CartItemSerializer, \
-    OrderSerializer, OrderItemSerializer
 from .services import buy_with_coins
+from .serializers import (
+    ProductSerializer,
+    CartItemSerializer,
+    OrderSerializer,
+)
 
 
 class ProductView(ModelViewSet):
@@ -29,7 +30,7 @@ class CartView(ModelViewSet):
                 cart=self.request.user.cart,
                 product=serializer.validated_data["product"]
             )
-        except CartItem.DoesNotExist:            
+        except CartItem.DoesNotExist:
             serializer.save(cart=self.request.user.cart)
         else:
             cart_item.quantity += serializer.validated_data["quantity"]
@@ -48,8 +49,9 @@ class OrderView(ModelViewSet):
     def perform_create(self, serializer):
         user = self.request.user
         cart = Cart.objects.get(user=user)
+        # Прописать логику покупки
+        # buy_with_coins(user.id, cart.total_cost)
 
-        buy_with_coins(user.id, cart.total_cost)
         order = serializer.save(user=user)
         for item in cart.items.all():
             order_item = OrderItem(

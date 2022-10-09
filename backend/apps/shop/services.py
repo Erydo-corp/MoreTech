@@ -10,6 +10,7 @@ def buy_with_coins(user_id, price):
     #     raise ValueError("Недостаточно монет")
     pass
 
+
 def buy_with_certificate():
     """Покупка товара за сертификаты"""
     pass

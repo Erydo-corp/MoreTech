@@ -36,16 +36,6 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class PaymentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Payment
-        fields = [
-            "id",
-            "user",
-            "idea"
-        ]
-
-
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Location
@@ -87,7 +77,6 @@ class EventListSerializer(serializers.ModelSerializer):
 
 
 class EventDetailSerializer(serializers.ModelSerializer):
-    payment = PaymentSerializer()
     location = LocationSerializer()
     image = ImageSerializer()
 

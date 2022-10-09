@@ -1,11 +1,6 @@
 from django.contrib import admin
 
-from .models import Payment, Idea, Location, Event, Image, Category
-
-
-class PaymentTabInlines(admin.TabularInline):
-    model = Payment
-    extra = 1
+from .models import Idea, Location, Event, Image, Category
 
 
 class LocationTabInlines(admin.TabularInline):
@@ -20,7 +15,7 @@ class ImageTabInlines(admin.TabularInline):
 
 @admin.register(Idea)
 class IdeaAdmin(admin.ModelAdmin):
-    inlines = [PaymentTabInlines, ]
+    pass
 
 
 @admin.register(Event)
@@ -30,9 +25,4 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Payment)
-class PaymentAdmin(admin.ModelAdmin):
     pass

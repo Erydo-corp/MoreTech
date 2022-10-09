@@ -24,3 +24,165 @@ a {
     background: black;
   }
 }
+
+/* Переопределение стилей header (start) */
+.MuiListItem-gutters:hover{
+  background-color: #424867;
+  border-radius: 12px;
+}
+.MuiListItem-gutters:focus{
+  background-color: #424867;
+  border-radius: 12px;
+  color: #FFFFFF;
+}
+.MuiListItem-padding{
+  padding: 5px 12px;
+}
+.MuiSvgIcon-root{
+  fill: #ABADC6;
+}
+/* Переопределение стилей header (end) */
+
+/* Переопределение стилей для главной страницы (start) */
+.finance__list_user{
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 11px;
+}
+.my__fnance{
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 23px;
+}
+.finance__list_user:hover,
+.my__fnance:hover,
+.history__sales:hover{
+  background-color: rgba(0, 0, 0, 0);
+}
+/* Переопределение стилей для главной страницы (end) */
+
+/* Переопределение стилей для авторизации (start) */
+.autho__image{
+  background-image: url('../public/assets/image/png/authorization.jpg');
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.MuiInputBase-input{
+  color: #FFFFFF;
+}
+/* Переопределение стилей для авторизации (end) */
+
+/* Переопределение стилей для Маркетплейса (start) */
+.shop__btn:focus{
+  border: none;
+  color: #FFFFFF;
+}
+.shop__btn:hover{
+  border: none;
+}
+.shop__coloring{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 276px;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+  background-repeat: no-repeat;
+  background-image: url('../public/assets/image/svg/coloringShop.svg');
+}
+.good__image{
+  height: 124px;
+  background-image: url('../public/assets/image/svg/good.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12px;
+}
+.history__sales{
+  padding-top: 11px;
+}
+/* Переопределение стилей для Маркетплейса (end) */
+
+/* Переопределение стилей для страницы с Идеями (start) */
+.box__idea{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+/* Переопределение стилей для страницы с Идеями (end) */  
+
+/* переопределение стилей для календаря (start)*/
+.MuiPickerStaticWrapper-content{
+  height: 273px;
+  background-color: #252A41;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.MuiPickersDay-root{
+  border-radius: 0;
+  color: #FFFFFF;
+  background-color: #252A41;
+  font-size: 14px;
+  height: 25px;
+}
+
+.MuiDayPicker-weekDayLabel{
+  color: #ABADC6;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.MuiPickersCalendarHeader-label{
+  font-size: 16px;
+  color: #ABADC6;
+  font-weight: 600;
+}
+
+.MuiPickersCalendarHeader-switchViewButton{
+  display: none;
+}
+
+.MuiSvgIcon-root{
+  color: #ABADC6;
+}
+/* переопределение стилей для календаря (end)*/
+
+/* переопределение стилей страница события (start) */
+.event__icon{
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+/* переопределение стилей страница события (end) */
+
+/* переопределение стилей для творческой среды (start) */
+.recent::before{
+  content: url(../public/assets/image/svg/creative__icon/1.svg);
+}
+.marked::before{
+  content: url(../public/assets/image/svg/creative__icon/2.svg);
+}
+.drafts::before{
+  content: url(../public/assets/image/svg/creative__icon/3.svg);
+}
+
+.button__design{
+  background: linear-gradient(90deg, #F158C0 0%, #6E49F5 100%);
+}
+
+.working__icon{
+  width: 14px;
+  height: 14px;
+  content: url(../public/assets/image/svg/creative__icon/list__icon_creative.svg);
+}
+
+.last__publication__icon{
+  content: url(../public/assets/image/svg/creative__icon/flag.svg);
+}
+/* переопределение стилей для творческой среды (end) */
+
+
+
+

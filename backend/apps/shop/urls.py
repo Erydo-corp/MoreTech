@@ -1,8 +1,6 @@
-from django.urls import path, include
-from rest_framework import routers
+from django.urls import path
 
 from . import views
-
 
 urlpatterns = [
     path('products/', views.ProductView.as_view({'get': 'list'})),

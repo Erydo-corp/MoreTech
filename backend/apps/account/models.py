@@ -62,22 +62,11 @@ class Account(models.Model):
         return self.user.username
 
 
-class Wallet(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        verbose_name='пользователь',
-    )
-    balance = models.DecimalField(
-        max_digits=8,
-        decimal_places=2,
-        default=0,
-        verbose_name='баланс'
-    )
-
-    class Meta:
-        verbose_name = "кошелек"
-        verbose_name_plural = "кошельки"
+# Заменить профиль на руководитель
+class EmployeeGroup(models.Model):
+    name = models.CharField('название', max_length=50)
+    profile = models.ForeignKey(Account, on_delete=models.CASCADE)
+    user = models.ManyToManyField(User)
 
     def __str__(self):
-        return f'{self.user.username}'
+        return self.name

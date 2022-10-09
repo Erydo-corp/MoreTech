@@ -71,27 +71,6 @@ class Idea(models.Model):
         return self.name
 
 
-class Payment(models.Model):
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        verbose_name='пользователь',
-    )
-    payment = models.DecimalField('размер бонуса', max_digits=8, decimal_places=2, default=0)
-    idea = models.ForeignKey(
-        Idea,
-        on_delete=models.CASCADE,
-        verbose_name='идея'
-    )
-
-    class Meta:
-        verbose_name = "платеж"
-        verbose_name_plural = "платежи"
-
-    def __str__(self):
-        return self.idea.name
-
-
 class Location(models.Model):
     event = models.ForeignKey(
         Event,
